@@ -19,12 +19,12 @@ def get_news(source):
         get_news_data = url.read()
         get_news_response = json.loads(get_news_data)
 
-        news_results = []
+        news_results = None
 
-        if get_news_response['results']:
-            news_results_list = get_news_response['results']
+        if get_news_response['articles']:
+            news_results_list = get_news_response['articles']
             news_results = process_results(news_results_list)
-
+    print(news_results)
     return news_results
 
 def process_results(news_list):
@@ -40,15 +40,19 @@ def process_results(news_list):
 
     news_results = []
     for news_item in news_list:
-        id = news_item.get('id')
-        name = news_item.get('name')
+    
         author = news_item.get('author')
         title = news_item.get('title')
-        urlToImage = news_item.get('image')
         description = news_item.get('description')
+        urlToImage = news_item.get('urlToImage')
+        publishedAt= news_item.get('publishedAt')
+        content = news_item.get('content')
+        
+        print(news_item)
 
         if urlToImage:
-            news_object = News(id,name,author,title,urlToImage,description)
+            news_object = News(author,title,description,urlToImage,publishedAt,content)
             news_results.append(news_object)
+            print(news_object)
 
     return news_results

@@ -9,6 +9,13 @@
         {% endif %}
     </head>
     <body>
+        <!-- Top headlines-->
+        <h2>Top headlines</h2>
+        <ul>
+            {% for top_headline in top_headlines %}
+            <li>{{top_headline.author}}</li>
+            {% endfor %}
+        </ul>
 
     </body>
 </html>
