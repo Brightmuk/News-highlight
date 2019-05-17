@@ -9,7 +9,7 @@ def index():
     View root page function that returns the index page and its data
     '''
     message = 'News Highlight'
-
+    
     return render_template('index.html',txt = message)
 
 @app.route('/news/<int:news_id>')
