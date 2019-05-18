@@ -11,7 +11,7 @@ def index():
      View root page function that returns the index page and its data
      '''
      # Getting top headlines
-     top_headlines = get_news('sports') 
+     top_headlines = get_news('all') 
      print(top_headlines)
      title = 'News Highlights'
      return render_template('index.html', txt = title, top_headlines = top_headlines )

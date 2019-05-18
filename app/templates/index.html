@@ -1,3 +1,5 @@
+{% import 'macro.html' as macro%}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,11 +12,9 @@
     </head>
     <body>
         <!-- Top headlines-->
-        <h2>Top headlines</h2>
+        <h2>Other news</h2>
         <ul>
-            {% for top_headline in top_headlines %}
-            <li>{{top_headline.author}}</li>
-            {% endfor %}
+           {{macro.displayNews(top_headlines)}}
         </ul>
 
     </body>
