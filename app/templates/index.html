@@ -14,11 +14,18 @@
     </head>
     <body>
         {% block content %}
+
+        <ul>
+            {{macro.displaySources(general)}}
+        </ul>
         <!-- Top headlines-->
         <h2>Other news</h2>
         <ul>
            {{macro.displayNews(top_headlines)}}
         </ul>
+        
+       
+
         {% endblock %}
     </body>
 </html>

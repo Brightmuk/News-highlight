@@ -5,3 +5,10 @@
     {% endfor %}
 
 {% endmacro %}
+
+{% macro displaySources(sources_list)%}
+
+    {% for source in sources_list %}
+        <li>{{source.name}}</li>
+    {% endfor %}
+{% endmacro %}

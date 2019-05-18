@@ -11,12 +11,17 @@ class News:
         self.publishedAt=publishedAt
         self.content=content
 
-class Source:
+class Sources:
     '''
     Source class to define sources
     '''
-    def __init__(self,id,name,description,url):
+    def __init__(self,id,name,description,url,category,language,country):
         self.id=id
         self.name=name
         self.description=description
-        self.url=url    
+        self.url=url
+        self.category=category
+        self.language=language
+        self.country=country
+        
+
