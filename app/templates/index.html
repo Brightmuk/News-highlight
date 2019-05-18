@@ -11,8 +11,16 @@
         {% else %}
         <title> News highlights </title>
         {% endif %}
+
+        {% block styles%}
+        {{ super() }}
+        <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+        {% endblock %}
+
     </head>
     <body>
+        <!--Sources-->
+        <h2>News Sources</h2>
         {% block content %}
 
         <ul>

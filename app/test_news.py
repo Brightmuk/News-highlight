@@ -3,6 +3,7 @@ from models import news
 
 News = news.News
 Sources = news.Sources
+Articles = news.Articles
 
 class NewsTest(unittest.TestCase):
     '''
@@ -24,9 +25,17 @@ class SourceTest(unittest.TestCase):
         '''
         test_source checks that new news source objects are created
         '''
-        self.new_source = Sources(1,'bbc-news','Jesus','is alive','eng','kenya')
+        self.new_source = Sources(1,'bbc-news','Jesus','is alive','eng','who','kenya')
         self.assertTrue(isinstance(self.new_source,Sources))
 
+class ArticleTest(unittest.TestCase):
+
+    def test_article(self):
+        '''
+        test_source checks that new news source objects are created
+        '''
+        self.new_article = Articles('me','bbc-news','Jesus','is alive','eng','kenya','no')
+        self.assertTrue(isinstance(self.new_article,Articles))
 
 
 

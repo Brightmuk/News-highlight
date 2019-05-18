@@ -4,6 +4,7 @@ from .models import news
 
 News = news.News
 Sources = news.Sources
+Articles = news.Articles
 
 # Getting api key
 api_key = app.config['NEWS_API_KEY']
@@ -11,6 +12,7 @@ api_key = app.config['NEWS_API_KEY']
 # Getting the news base url
 N_base_url = app.config['NEWS_API_BASE_URL']
 S_base_url = app.config['SOURCE_API_BASE_URL']
+A_base_url = app.config['ARTICLE_API_BASE_URL']
 
 def get_news(source):
     '''
@@ -27,7 +29,7 @@ def get_news(source):
         if get_news_response['articles']:
             news_results_list = get_news_response['articles']
             news_results = process_results(news_results_list)
-    print(news_results)
+    
     return news_results
 
 def process_results(news_list):
@@ -51,12 +53,12 @@ def process_results(news_list):
         publishedAt= news_item.get('publishedAt')
         content = news_item.get('content')
         
-        print(news_item)
+        
 
         if urlToImage:
             news_object = News(author,title,description,urlToImage,publishedAt,content)
             news_results.append(news_object)
-            print(news_object)
+           
 
     return news_results
 
@@ -94,10 +96,53 @@ t:
         language = sources_item.get('language')
         country = sources_item.get('country')
 
-        print(sources_item)
+        
 
         if id:
             sources_object =Sources(id,name,description,url,category,language,country)
             sources_results.append(sources_object)
 
     return sources_results
+
+def get_article(id):
+    get_article_details_url = A_base_url.format(id,api_key)
+
+    with urllib.request.urlopen(get_article_details_url) as url:
+
+        article_details_data = url.read()
+        article_details_response = json.loads(article_details_data)
+        
+        article_object = None
+
+        if article_details_response:
+            articles_results_list = article_details_response['articles']
+            articles_results = process_articles(articles_results_list)
+
+
+    return article_object
+
+def process_articles(articles_list):
+    '''
+    Function  that processes the article result and transform them to a list of Objects
+    Args:
+        articles_list: A list of dictionaries that contain article details
+    Returns :
+        articles_results: A list of article objects
+    '''
+    articles_results = []
+    for articles_item in articles_list:
+        
+        author = articles_item.get('author')
+        title = articles_item.get('title')
+        description = articles_item.get('description')
+        url = articles_item.get('url')
+        urlToImage = articles_item.get('urlToImage')
+        publishedAt = articles_item.get('publishedAt')
+        content = articles_item.get('content')
+        print(articles_item)
+        if url:
+            articles_object = Articles(author,title,description,url,urlToImage,publishedAt,content)
+            articles_results.append(articles_object)
+        print(articles_object)
+    return articles_results
+

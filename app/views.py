@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .request import get_news,get_sources
+from .request import get_news,get_sources,get_article
 
 
 # Views
@@ -18,11 +18,17 @@ def index():
      title = 'News Highlights'
      return render_template('index.html', txt = title, top_headlines = top_headlines, general=general )
 
-@app.route('/news/<int:news_id>')
-def news(news_id):
+@app.route('/articles/<id>')
+def article(id):
 
      '''
      View news source function that returns the news sources
      '''
-     return render_template('movie.html',id = news_id)
+     
+     all_articles = get_article(id)
+     
+     print(all_articles)
+     return render_template('articles.html', articles = all_articles, art=articles )
+
+
 
