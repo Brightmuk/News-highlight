@@ -19,6 +19,7 @@
 
     </head>
     <body>
+        <div class="container">
         <!--Sources-->
         <h2>News Sources</h2>
         {% block content %}
@@ -31,9 +32,9 @@
         <ul>
            {{macro.displayNews(top_headlines)}}
         </ul>
-        
        
 
         {% endblock %}
+        </div>
     </body>
 </html>
