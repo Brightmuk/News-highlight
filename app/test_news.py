@@ -2,6 +2,7 @@ import unittest
 from models import news
 
 News = news.News
+Source = news.Source
 
 class NewsTest(unittest.TestCase):
     '''
@@ -16,6 +17,15 @@ class NewsTest(unittest.TestCase):
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news,News))
+
+class SourceTest(unittest.TestCase):
+
+    def test_source(self):
+        '''
+        test_source checks that new news source objects are created
+        '''
+        self.new_source = Source(1,'bbc-news','Jesus','is alive')
+        self.assertTrue(isinstance(self.new_source,Source))
 
 
 if __name__ == '__main__':

@@ -56,3 +56,4 @@ def process_results(news_list):
             print(news_object)
 
     return news_results
+
