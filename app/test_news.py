@@ -1,9 +1,9 @@
 import unittest
-from models import news
+from models import news,article
 
 News = news.News
 Sources = news.Sources
-Articles = news.Articles
+Articles = article.Articles
 
 class NewsTest(unittest.TestCase):
     '''
@@ -34,7 +34,7 @@ class ArticleTest(unittest.TestCase):
         '''
         test_source checks that new news source objects are created
         '''
-        self.new_article = Articles('me','bbc-news','Jesus','is alive','eng','kenya','no')
+        self.new_article = Articles('me','bbc-news','Jesus','is alive','eng','kenya','no','who')
         self.assertTrue(isinstance(self.new_article,Articles))
 
 

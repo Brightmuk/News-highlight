@@ -25,10 +25,15 @@ def article(id):
      View news source function that returns the news sources
      '''
      
-     all_articles = get_article(id)
+     all_articles = get_article('')
+     
      
      print(all_articles)
-     return render_template('articles.html', articles = all_articles, art=articles )
+     return render_template('articles.html', articles = all_articles, )
 
-
+@app.route('/<keywords>')
+def source_search(keywords):
+     searched_news = search_news(keywords)
+     title = f'search results for {keywords}'
+     return render_template('search.html',title=title,articles=searched_news)
 

@@ -5,7 +5,8 @@ class Config:
     NEWS_API_BASE_URL='https://newsapi.org/v2/everything?q={}&apiKey={}'
     SOURCE_API_BASE_URL='https://newsapi.org/v2/sources?category={}&language=en&apiKey={}'
     ARTICLE_API_BASE_URL='https://newsapi.org/v2/everything?sources={}&apiKey={}'
-
+    SEARCH_URL = 'https://newsapi.org/v2/everything?q={}apiKey={}'
+    SECRET_KEY='be@t$bydre'
     pass
 
 

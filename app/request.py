@@ -13,6 +13,7 @@ api_key = app.config['NEWS_API_KEY']
 N_base_url = app.config['NEWS_API_BASE_URL']
 S_base_url = app.config['SOURCE_API_BASE_URL']
 A_base_url = app.config['ARTICLE_API_BASE_URL']
+SCH_base_url = app.config['SEARCH_URL']
 
 def get_news(source):
     '''
@@ -58,7 +59,7 @@ def process_results(news_list):
         if urlToImage:
             news_object = News(author,title,description,urlToImage,publishedAt,content)
             news_results.append(news_object)
-           
+            
 
     return news_results
 
@@ -95,31 +96,35 @@ t:
         category = sources_item.get('category')
         language = sources_item.get('language')
         country = sources_item.get('country')
-
-        
+ 
 
         if id:
+            print(sources_item)
             sources_object =Sources(id,name,description,url,category,language,country)
             sources_results.append(sources_object)
+            print(sources_item)
 
     return sources_results
 
-def get_article(id):
-    get_article_details_url = A_base_url.format(id,api_key)
+def get_article(source):
+    get_article_details_url = A_base_url.format(source,api_key)
 
     with urllib.request.urlopen(get_article_details_url) as url:
 
         article_details_data = url.read()
         article_details_response = json.loads(article_details_data)
         
-        article_object = None
+        article_object = []
 
-        if article_details_response:
+        if article_details_response['articles']:
             articles_results_list = article_details_response['articles']
             articles_results = process_articles(articles_results_list)
+            
 
 
     return article_object
+
+
 
 def process_articles(articles_list):
     '''
@@ -131,7 +136,7 @@ def process_articles(articles_list):
     '''
     articles_results = []
     for articles_item in articles_list:
-        
+        source = articles_item.get('source')
         author = articles_item.get('author')
         title = articles_item.get('title')
         description = articles_item.get('description')
@@ -139,10 +144,24 @@ def process_articles(articles_list):
         urlToImage = articles_item.get('urlToImage')
         publishedAt = articles_item.get('publishedAt')
         content = articles_item.get('content')
-        print(articles_item)
+        
         if url:
-            articles_object = Articles(author,title,description,url,urlToImage,publishedAt,content)
-            articles_results.append(articles_object)
-        print(articles_object)
+            article_object = Articles(source,author,title,description,url,urlToImage,publishedAt,content)
+            articles_results.append(article_object)
+            print(articles_item)
     return articles_results
+
+def search_news(keyword):
+    url = SCH_base_url.format(keyword,api_key)
+
+    with urllib.request.urlopen(SCH_base_url) as response:
+        data = json.loads(response.read())
+
+        articles = []
+
+        if data['articles']:
+            articles_list = data['articles']
+            articles = process_articles(articles_list)
+
+    return articles
 
