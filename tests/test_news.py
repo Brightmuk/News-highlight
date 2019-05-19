@@ -1,5 +1,5 @@
 import unittest
-from app.models import News,Articles
+from .models import News
 
 
 
@@ -17,23 +17,7 @@ class NewsTest(unittest.TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news,News))
 
-class SourceTest(unittest.TestCase):
 
-    def test_source(self):
-        '''
-        test_source checks that new news source objects are created
-        '''
-        self.new_source = Sources(1,'bbc-news','Jesus','is alive','eng','who','kenya')
-        self.assertTrue(isinstance(self.new_source,Sources))
-
-class ArticleTest(unittest.TestCase):
-
-    def test_article(self):
-        '''
-        test_source checks that new news source objects are created
-        '''
-        self.new_article = Articles('me','bbc-news','Jesus','is alive','eng','kenya','no','who')
-        self.assertTrue(isinstance(self.new_article,Articles))
 
 
 
