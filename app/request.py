@@ -107,7 +107,7 @@ t:
             print(sources_item)
             sources_object =Sources(id,name,description,url,category,language,country)
             sources_results.append(sources_object)
-            print(sources_item)
+            
 
     return sources_results
 
@@ -153,7 +153,7 @@ def process_articles(articles_list):
         if url:
             article_object = Articles(source,author,title,description,url,urlToImage,publishedAt,content)
             articles_results.append(article_object)
-            print(articles_item)
+            print(articles_item)#test if its fetching
     return articles_results
 
 def search_news(keyword):

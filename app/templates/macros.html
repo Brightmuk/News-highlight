@@ -1,9 +1,13 @@
 {% macro displayNews(news_list) %}
 
     {% for top_headline in news_list %}
-    <div class="col-xs-12 col-sm-4 col-md-2  news-card">
-        <li>{{ top_headline.title}}</li>
-    </div>
+    <div class='container'>
+        
+            <div class="col-lg-4 col-sm-4 col-sm-4  news-card">
+                <li>{{ top_headline.title}}</li>
+            </div>
+        </div>
+    
     {% endfor %}
 
 {% endmacro %}
@@ -12,11 +16,12 @@
 
     {% for source in sources_list %}
     
-    <div class="col-lg-4 col-lg-4 col-lg-4">
-       <h4>{{source.name}}</h4>
-       <p>{{source.description | truncate(200)}}</p>
-       <a href="/articles/{{source.id}}">Read</a>
+    <div class="col-lg-4 col-sm-4 col-sm-4 head-card">
+        <div class="card">
+       <h4 class="card-header">{{source.name}}</h4>
+        <p class="card-body">{{source.description | truncate(200)}}</p>
+            <a class="card-footer" href="/articles/{{source.id}}">Read</a>
        </div>
-       
+       </div>
     {% endfor %}
 {% endmacro %}
