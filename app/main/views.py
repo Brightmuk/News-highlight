@@ -1,10 +1,10 @@
-from flask import render_template
-from app import app
-from .request import get_news,get_sources,get_article
+from flask import render_template,request,redirect,url_for
+from . import main
+from ..request import get_news,get_sources,get_article,search_news
 
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
      '''
@@ -18,7 +18,7 @@ def index():
      title = 'News Highlights'
      return render_template('index.html', txt = title, top_headlines = top_headlines, general=general )
 
-@app.route('/articles/<id>')
+@main.route('/articles/<id>')
 def article(id):
 
      '''
@@ -31,7 +31,7 @@ def article(id):
      print(all_articles)
      return render_template('articles.html', articles = all_articles, )
 
-@app.route('/<keywords>')
+@main.route('/<keywords>')
 def source_search(keywords):
      searched_news = search_news(keywords)
      title = f'search results for {keywords}'
