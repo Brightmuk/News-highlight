@@ -13,25 +13,23 @@ def index():
      # Getting top headlines
      top_headlines = get_news('Top') 
      print(top_headlines)
-
+     
      general = get_sources('general')
      title = 'News Highlights'
      return render_template('index.html', txt = title, top_headlines = top_headlines, general=general )
 
 @main.route('/articles/<id>')
-def article(id):
+def articles(id):
+    '''
+    View articles for a single source
+    '''
+    all_articles = get_article(id)
+    title = f'NewsApp -- {id}'
+    id_articles = id
 
-     '''
-     View news source function that returns the news sources
-     '''
-     
-     all_articles = get_article('')
-     
-     
-     print(all_articles)
-     return render_template('articles.html', articles = all_articles, )
+    return render_template('articles.html', articles=all_articles, title=title, id_id=id_articles)
 
-@main.route('/<keywords>')
+@main.route('/search/<keywords>')
 def source_search(keywords):
      searched_news = search_news(keywords)
      title = f'search results for {keywords}'

@@ -3,8 +3,8 @@
     {% for top_headline in news_list %}
     <div class='container'>
         
-            <div class="col-lg-4 col-sm-4 col-sm-4  news-card">
-                <li>{{ top_headline.title}}</li>
+            <div class="col-lg-4  news-card">
+            
             </div>
         </div>
     
@@ -17,11 +17,29 @@
     {% for source in sources_list %}
     
     <div class="col-lg-4 col-sm-4 col-sm-4 head-card">
-        <div class="card">
-       <h4 class="card-header">{{source.name}}</h4>
-        <p class="card-body">{{source.description | truncate(200)}}</p>
-            <a class="card-footer" href="/articles/{{source.id}}">Read</a>
+        <div style="border-left:3px solid black; padding-left:10px;padding-bottom:10px;
+        border-radius:7px;" class="card">
+       <h4 class="card-header" style="border-bottom: 1px solid grey;padding-bottom:10px;;">{{source.name}}</h4>
+        <p class="card-body">{{source.description | truncate(30)}}</p>
+            <a class="card-footer" style="padding-bottom:20px;" href="/articles/{{source.id}}">Read</a>
        </div>
        </div>
     {% endfor %}
+{% endmacro %}
+
+{% macro displayArticlesList(articles_list) %}
+{% for article in articles_list %}
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8  article-card" style="padding-bottom: 15px;">
+    <img class="img-responsive" src="{{article.urlToImage}}" alt="image">
+    <h4>{{article.title}}</h4>
+    <p><strong>{{article.author}}</strong></p>
+    <p>{{article.description | truncate(100)}}</p>
+    <p>Created: {{article.publishedAt}}</p>
+    <h4><a href="{{article.url}}">Read more</a></h4>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+{% endfor %}
 {% endmacro %}

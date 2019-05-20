@@ -103,16 +103,16 @@ t:
         country = sources_item.get('country')
  
 
-        if id:
-            print(sources_item)
-            sources_object =Sources(id,name,description,url,category,language,country)
-            sources_results.append(sources_object)
+        
+        print(sources_item)
+        sources_object =Sources(id,name,description,url,category,language,country)
+        sources_results.append(sources_object)
             
 
     return sources_results
 
-def get_article(source):
-    get_article_details_url = A_base_url.format(source,api_key)
+def get_article(id):
+    get_article_details_url = A_base_url.format(id,api_key)
 
     with urllib.request.urlopen(get_article_details_url) as url:
 
@@ -127,7 +127,7 @@ def get_article(source):
             
 
 
-    return article_object
+    return articles_results
 
 
 
@@ -141,7 +141,7 @@ def process_articles(articles_list):
     '''
     articles_results = []
     for articles_item in articles_list:
-        source = articles_item.get('source')
+        
         author = articles_item.get('author')
         title = articles_item.get('title')
         description = articles_item.get('description')
@@ -150,10 +150,9 @@ def process_articles(articles_list):
         publishedAt = articles_item.get('publishedAt')
         content = articles_item.get('content')
         
-        if url:
-            article_object = Articles(source,author,title,description,url,urlToImage,publishedAt,content)
-            articles_results.append(article_object)
-            print(articles_item)#test if its fetching
+        article_object = Articles(author,title,description,url,urlToImage,publishedAt,content)
+        articles_results.append(article_object)
+        print(articles_item)#test if its fetching
     return articles_results
 
 def search_news(keyword):

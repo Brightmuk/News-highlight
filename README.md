@@ -25,14 +25,14 @@ want to follow up on by the category or by the source
 * python3.6 -m venv virtual
 * source virtual/bin/activate
 ##### Installing dependencies
-pip install -r requirements
+* pip install -r requirements
 ##### Running Tests
-python -m unittest tests/test_models.py
+* python -m unittest tests/test_models.py
 ##### Running in development
-python run.py
-Open the app on your browser, by default on 127.0.0.1:5000.
+* python run.py
+* Open the app on your browser, by default on 127.0.0.1:5000.
 
-Deploying to heroku
+* Deploying to heroku
 Make sure you have requirements.txt
 # should be in virtual
 * pip freeze > requirements.txt
