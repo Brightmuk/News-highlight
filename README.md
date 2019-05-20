@@ -15,6 +15,7 @@ want to follow up on by the category or by the source
 5. Flask
 
 ## Using the application
+* you can view the live demo at https://bnewshub.herokuapp.com/
 * You require a minimum python version 3.6 to run the application on your local machine
 * clone the repository and get to install flask using _git clone https://github.com/Brightmuk/News-highlight_
 * Run the application using _./start.sh_ command
