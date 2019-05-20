@@ -19,8 +19,10 @@
     <div class="col-lg-4 col-sm-4 col-sm-4 head-card">
         <div style="border-left:3px solid black; padding-left:10px;padding-bottom:10px;
         border-radius:7px;" class="card">
-       <h4 class="card-header" style="border-bottom: 1px solid grey;padding-bottom:10px;;">{{source.name}}</h4>
+        
+       <h4 class="card-header" style="border-bottom: 1px solid grey;padding-bottom:10px;;">🏴 {{source.name}}</h4>
         <p class="card-body">{{source.description | truncate(30)}}</p>
+        <h5>{{source.country}}</h5>
             <a class="card-footer" style="padding-bottom:20px;" href="/articles/{{source.id}}">Read</a>
        </div>
        </div>
